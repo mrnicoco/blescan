@@ -6,10 +6,11 @@ devices = {
     "a4:c1:38:9d:9e:2b" : "Salon",
     "a4:c1:38:43:c1:57" : "Dining",
     "a4:c1:38:23:ed:7c" : "Kitchen",
-    "a4:c1:38:a1:74:0d" : "lilias",
+    "a4:c1:38:a1:74:0d" : "Lilias",
     "a4:c1:38:46:44:46" : "Bedroom",
     "a4:c1:38:51:fb:e3" : "Laundry",
-    "a4:c1:38:a7:e9:56" : "Ulysses"
+    "a4:c1:38:a7:e9:56" : "Ulysses",
+    "a4:c1:38:f0:d1:fb" : "Bathroom"
 }
 
 
@@ -26,8 +27,8 @@ class ScanDelegate(DefaultDelegate):
                     hum = unpack('<H', bytes.fromhex(value[20:24]))
                     volt = unpack('<H', bytes.fromhex(value[24:28]))
                     bat = unpack('<b', bytes.fromhex(value[28:30]))
-                    print ("%s : temp of %d C and hum of %d %% and bat of %d %% and volt of %d mv" % (devices[dev.addr], temp[0], hum[0], bat[0], volt[0]))
-                    client.publish("ATCThermometer/%s" % (devices[dev.addr]), "{\"temp\": %d, \"humidity\": %d}" % (temp[0] * 0.01, hum[0] * 0.01))
+                    print ("%s : temp of %f C and hum of %f %% and bat of %d %% and volt of %d mv" % (devices[dev.addr], temp[0] * 0.01, hum[0] * 0.01, bat[0], volt[0]))
+                    client.publish("ATCThermometer/%s" % (devices[dev.addr]), "{\"temp\": %f, \"humidity\": %f}" % (temp[0] * 0.01, hum[0] * 0.01))
                     
                 
                 
@@ -38,7 +39,8 @@ client.connect("5198535b3dcd4eb19cb816c71d2075a1.s1.eu.hivemq.cloud", 8883)
 
                     
 scanner = Scanner().withDelegate(ScanDelegate())
-scanner.start()
+#scanner.start()
 while True:
-    scanner.process()
+    scanner.scan(10.0)
+    
 
