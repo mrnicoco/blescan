@@ -10,7 +10,12 @@ devices = {
     "a4:c1:38:46:44:46" : "Bedroom",
     "a4:c1:38:51:fb:e3" : "Laundry",
     "a4:c1:38:a7:e9:56" : "Ulysses",
-    "a4:c1:38:f0:d1:fb" : "Bathroom"
+    "a4:c1:38:f0:d1:fb" : "Bathroom",
+    "a4:c1:38:e1:59:e4" : "Nicos",
+    "a4:c1:38:77:65:71" : "GuestBlue",
+    "a4:c1:38:f4:ec:cc" : "GuestTriplex",
+    "a4:c1:38:b2:95:73" : "MainEntrance",
+    "a4:c1:38:7c:43:27" : "UlyssesBathroom"
 }
 
 
